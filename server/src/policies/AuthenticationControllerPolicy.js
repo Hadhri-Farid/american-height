@@ -15,12 +15,16 @@ module.exports = {
       switch (error.details[0].context.key) {
         case 'email':
           res.status(400).send({
-            error: 'c pas un email '
+            error: 'Veuillez renseinger un email valide '
           })
           break
         case 'password':
           res.status(400).send({
-            error: 'Go mettre un vrai password'
+            error: `Votre mot de passe doit remplir les conditions suivantes:
+            <br>
+            1. Contenir uniquement des caractères alphanumériques.
+            <br> 
+            2. Faire entre 8 et 32 caractères`
           })
           break
         default:
