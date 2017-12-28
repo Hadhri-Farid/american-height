@@ -42,6 +42,12 @@
           <v-list-tile-action>
             <v-icon>icon</v-icon>
           </v-list-tile-action>
+<<<<<<< HEAD
+=======
+          <v-list-tile-content>
+            <v-list-tile-title>Open Temporary Drawer</v-list-tile-title>
+          </v-list-tile-content>
+>>>>>>> 4cc009032108a0e011f5eda95d5b826ddb14a7a1
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -68,6 +74,14 @@
       v-model="right"
       fixed
     ></v-navigation-drawer>
+<<<<<<< HEAD
+=======
+    <v-footer color="blue-grey" class="white--text" app>
+      <span>Vuetify</span>
+      <v-spacer></v-spacer>
+      <span>&copy; 2017</span>
+    </v-footer>
+>>>>>>> 4cc009032108a0e011f5eda95d5b826ddb14a7a1
   </v-app>
 </template>
 

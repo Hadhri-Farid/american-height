@@ -2,7 +2,11 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
+<<<<<<< HEAD
         <v-toolbar flat dense class="green" dark>
+=======
+        <v-toolbar flat dense class="orange darken-1" dark>
+>>>>>>> 4cc009032108a0e011f5eda95d5b826ddb14a7a1
           <v-toolbar-title>S'inscrire</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
@@ -21,7 +25,11 @@
             <br>
             <div class="error" v-html="error"></div>
             <br>
+<<<<<<< HEAD
             <v-btn class="blue" dark @click="register">S'inscrire</v-btn>
+=======
+            <v-btn class="orange darken-1" dark @click="register">S'inscrire</v-btn>
+>>>>>>> 4cc009032108a0e011f5eda95d5b826ddb14a7a1
           </div>
       </div>
     </v-flex>
