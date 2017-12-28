@@ -3,12 +3,7 @@
         <v-toolbar-title clas="mr-4">
             <span class="home" @click="navigateTo({name:'root'})">American Height</span>
         </v-toolbar-title>
-<!--    <v-toolbar-items>
-            <v-btn flat dark>
-                Browse
-            </v-btn>
-        </v-toolbar-items>
--->
+
         <v-spacer></v-spacer>
         <v-toolbar-items>
             <v-btn flat dark @click="navigateTo({name:'register'})">
