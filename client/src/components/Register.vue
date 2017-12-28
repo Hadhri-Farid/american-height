@@ -1,18 +1,23 @@
 <template>
   <v-layout column>
     <v-flex xs6 offset-xs3>
-      <div class="blue elevation-2">
-        <v-toolbar flat dense white dark>
+      <div class="white elevation-2">
+        <v-toolbar flat dense class="orange darken-1" dark>
           <v-toolbar-title>S'inscrire</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
-            <input type="email" name="email" v-model="email" placeholder="Your email">
-            <br>
-            <input type="password" name="password" v-model="password" placeholder="Your password">
+              <v-text-field
+              label="Email"
+              v-model="email"
+            ></v-text-field>
+              <v-text-field
+              label="password"
+              v-model="password"
+            ></v-text-field>
             <br>
             <div class="error" v-html="error"></div>
             <br>
-            <v-btn class="white" @click="register">S'inscrire</v-btn>
+            <v-btn class="orange darken-1" dark @click="register">S'inscrire</v-btn>
           </div>
       </div>
     </v-flex>
@@ -27,7 +32,7 @@ export default {
       email: "",
       password: "",
       error: null
-    };
+    }
   },
   methods: {
     async register() {
@@ -35,13 +40,13 @@ export default {
         await AuthentificationService.register({
           email: this.email,
           password: this.password
-        });
+        })
       } catch (error) {
         this.error = error.response.data.error;
       }
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
