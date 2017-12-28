@@ -1,7 +1,7 @@
 <template>
-  <v-footer class="pa-3">
+  <v-footer class="pa-3 orange lighten 3">
     <v-spacer></v-spacer>
-    <div>© {{ new Date().getFullYear() }}</div>
+    <div class="wh">© {{ new Date().getFullYear() }} Developped with ♥ by <a href="https://twitter.com/SGKn936"><img class="dy" src="../assets/img/pixelavatar60ttt.png"></a>And <a href="https://github.com/Hadhri-Farid"><img class="far" src="../assets/img/pixelavatarf60tt.png"></a></div>
   </v-footer>
 </template>
 <script>
@@ -13,5 +13,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.wh {
+    color: white;
+}
 
+.far{
+    height: 40px;
+}
+
+.dy{
+    height: 40px;
+}
 </style>

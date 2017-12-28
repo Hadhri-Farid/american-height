@@ -6,12 +6,16 @@
           <v-toolbar-title>S'inscrire</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
+                     <v-text-field
+              label="Pseudo"
+              v-model="pseudo"
+            ></v-text-field>
               <v-text-field
               label="Email"
               v-model="email"
             ></v-text-field>
               <v-text-field
-              label="password"
+              label="Mot de passe"
               v-model="password"
             ></v-text-field>
             <br>
@@ -31,6 +35,7 @@ export default {
     return {
       email: "",
       password: "",
+      pseudo: "",
       error: null
     }
   },
@@ -39,7 +44,8 @@ export default {
       try {
         await AuthentificationService.register({
           email: this.email,
-          password: this.password
+          password: this.password,
+          pseudo: this.pseudo,
         })
       } catch (error) {
         this.error = error.response.data.error;
