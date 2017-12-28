@@ -1,7 +1,7 @@
 <template>
     <v-toolbar fixed dark class="deep-orange lighten-1">
         <v-toolbar-title clas="mr-4">
-            American Height
+            <span class="home" @click="navigateTo({name:'root'})">American Height</span>
         </v-toolbar-title>
 <!--    <v-toolbar-items>
             <v-btn flat dark>
@@ -30,5 +30,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.home {
+    cursor: pointer;
+}
 </style>
