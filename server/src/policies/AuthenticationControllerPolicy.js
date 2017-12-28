@@ -3,6 +3,8 @@ const Joi = require('joi')
 module.exports = {
   register (req, res, next) {
     const schema = {
+      username: Joi.string().required(),
+      coins: Joi.number().min(0).required(),
       email: Joi.string().email(),
       password: Joi.string().regex(
         new RegExp('^[a-zA-Z0-9]{8,32}$')
@@ -15,7 +17,7 @@ module.exports = {
       switch (error.details[0].context.key) {
         case 'email':
           res.status(400).send({
-            error: 'Veuillez renseinger un email valide '
+            error: 'Veuillez renseigner un email valide.'
           })
           break
         case 'password':
@@ -23,13 +25,13 @@ module.exports = {
             error: `Votre mot de passe doit remplir les conditions suivantes:
             <br>
             1. Contenir uniquement des caractères alphanumériques.
-            <br> 
-            2. Faire entre 8 et 32 caractères`
+            <br>
+            2. Faire entre 8 et 32 caractères.`
           })
           break
         default:
           res.status(400).send({
-            error: 'ya un truc chelou la'
+            error: 'Il y a eu une erreur, veuillez réessayer.'
           })
       }
     } else {

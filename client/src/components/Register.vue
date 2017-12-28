@@ -1,24 +1,31 @@
 <template>
-<v-layout column>
-  <v-flex xs6 offset-xs3>
-    <div class="blue elevation-2">
-      <v-toolbar flat dense white dark>
-        <v-toolbar-title>S'inscrire</v-toolbar-title>
+  <v-layout column>
+    <v-flex xs6 offset-xs3>
+      <div class="white elevation-2">
+        <v-toolbar flat dense class="green" dark>
+          <v-toolbar-title>S'inscrire</v-toolbar-title>
         </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
-  <input type="email" name="email" v-model="email" placeholder="Your email">
-  <br>
-  <input type="password" name="password" v-model="password" placeholder="Your password">
-  <br>
-  <div class="error" v-html="error"></div>
-  <br>
-  <v-btn class="white" @click="register">S'inscrire</v-btn>
-</div>
-      
-    </div>
-  </v-flex>
-</v-layout>
-
+          <div class="pl-4 pr-4 pt-2 pb-2">
+                     <v-text-field
+              label="Pseudo"
+              v-model="pseudo"
+            ></v-text-field>
+              <v-text-field
+              label="Email"
+              v-model="email"
+            ></v-text-field>
+              <v-text-field
+              label="Mot de passe"
+              v-model="password"
+            ></v-text-field>
+            <br>
+            <div class="error" v-html="error"></div>
+            <br>
+            <v-btn class="blue" dark @click="register">S'inscrire</v-btn>
+          </div>
+      </div>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -28,22 +35,24 @@ export default {
     return {
       email: "",
       password: "",
+      pseudo: "",
       error: null
-    };
+    }
   },
   methods: {
     async register() {
       try {
         await AuthentificationService.register({
           email: this.email,
-          password: this.password
-        });
+          password: this.password,
+          pseudo: this.pseudo,
+        })
       } catch (error) {
         this.error = error.response.data.error;
       }
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
