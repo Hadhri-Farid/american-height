@@ -9,13 +9,10 @@
       app
     >
       <v-list dense>
-        <v-list-tile @click.stop="right = !right">
+        <v-list-tile>
           <v-list-tile-action>
             <v-icon>icon</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Open Temporary Drawer</v-list-tile-title>
-          </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -27,7 +24,7 @@
       clipped-right
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Toolbar</v-toolbar-title>
+      <v-toolbar-title>Rooms</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>
     </v-toolbar>
@@ -38,16 +35,10 @@
       app
     >
       <v-list dense>
-        <v-list-tile @click.stop="left = !left">
+        <v-list-tile>
           <v-list-tile-action>
             <v-icon>icon</v-icon>
           </v-list-tile-action>
-<<<<<<< HEAD
-=======
-          <v-list-tile-content>
-            <v-list-tile-title>Open Temporary Drawer</v-list-tile-title>
-          </v-list-tile-content>
->>>>>>> 4cc009032108a0e011f5eda95d5b826ddb14a7a1
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -60,10 +51,6 @@
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-tooltip right>
-            <v-btn icon large :href="source" target="_blank" slot="activator">
-              <v-icon large>code</v-icon>
-            </v-btn>
-            <span>Source</span>
           </v-tooltip>
         </v-layout>
       </v-container>
@@ -74,14 +61,6 @@
       v-model="right"
       fixed
     ></v-navigation-drawer>
-<<<<<<< HEAD
-=======
-    <v-footer color="blue-grey" class="white--text" app>
-      <span>Vuetify</span>
-      <v-spacer></v-spacer>
-      <span>&copy; 2017</span>
-    </v-footer>
->>>>>>> 4cc009032108a0e011f5eda95d5b826ddb14a7a1
   </v-app>
 </template>
 
@@ -100,3 +79,7 @@
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.footer {
+  background:red;
+}
+</style>
