@@ -3,19 +3,12 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
-<<<<<<< HEAD
-        <v-toolbar flat dense class="green" dark>
-          <v-toolbar-title>S'inscrire</v-toolbar-title>
-        </v-toolbar>
-          <div class="pl-4 pr-4 pt-2 pb-2">
-=======
         <v-toolbar flat dense class="green lighten-2" dark>
           <v-toolbar-title>Inscription</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
             <form name="american-height-form"
               autocomplete="off">
->>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
               <v-text-field
               label="Email"
               v-model="email"
@@ -29,12 +22,8 @@
             <br>
             <div class="error" v-html="error"></div>
             <br>
-<<<<<<< HEAD
-            <v-btn class="blue" dark @click="register">S'inscrire</v-btn>
-=======
             <v-spacer></v-spacer>
             <v-btn class="green darken-2" dark @click="register">S'inscrire</v-btn>
->>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
           </div>
       </div>
     </v-flex>
@@ -49,13 +38,8 @@ export default {
     return {
       email: "",
       password: "",
-<<<<<<< HEAD
-      error: null,
-    }
-=======
       error: null
     };
->>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
   },
   methods: {
     async register() {

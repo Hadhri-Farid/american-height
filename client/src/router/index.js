@@ -1,21 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Lobby from '@/components/Lobby'
 import Register from '@/components/Register'
-<<<<<<< HEAD
-import Login from '@/components/Login'
-=======
 import LoginPage from '@/components/Login'
->>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
+import ToggleButton from 'vue-js-toggle-button'
 
+Vue.use(ToggleButton)
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'root',
-      component: HelloWorld
+      name: 'login',
+      component: LoginPage
     },
     {
       path: '/register',
@@ -23,13 +22,9 @@ export default new Router({
       component: Register
     },
     {
-      path: '/login',
-      name: 'login',
-<<<<<<< HEAD
-      component: Login
-=======
-      component: LoginPage
->>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
+      path: '/lobby',
+      name: 'lobby',
+      component: Lobby
     }
   ]
 })
