@@ -1,27 +1,45 @@
 <template>
+<transition name="fade">
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
+<<<<<<< HEAD
         <v-toolbar flat dense class="green" dark>
           <v-toolbar-title>S'inscrire</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
+=======
+        <v-toolbar flat dense class="green lighten-2" dark>
+          <v-toolbar-title>Inscription</v-toolbar-title>
+        </v-toolbar>
+          <div class="pl-4 pr-4 pt-2 pb-2">
+            <form name="american-height-form"
+              autocomplete="off">
+>>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
               <v-text-field
               label="Email"
               v-model="email"
             ></v-text-field>
               <v-text-field
               label="Mot de passe"
+              type="password"
               v-model="password"
             ></v-text-field>
+            </form>
             <br>
             <div class="error" v-html="error"></div>
             <br>
+<<<<<<< HEAD
             <v-btn class="blue" dark @click="register">S'inscrire</v-btn>
+=======
+            <v-spacer></v-spacer>
+            <v-btn class="green darken-2" dark @click="register">S'inscrire</v-btn>
+>>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
           </div>
       </div>
     </v-flex>
   </v-layout>
+  </transition>
 </template>
 
 <script>
@@ -31,27 +49,48 @@ export default {
     return {
       email: "",
       password: "",
+<<<<<<< HEAD
       error: null,
     }
+=======
+      error: null
+    };
+>>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
   },
   methods: {
     async register() {
       try {
-        await AuthentificationService.register({
+        const response = await AuthentificationService.register({
           email: this.email,
           password: this.password,
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error;
       }
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .error {
   color: red;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: opacity;
+  transition-duration: 0.7s;
+}
+
+.fade-enter-active {
+  transition-delay: 0.5s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>

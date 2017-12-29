@@ -9,11 +9,14 @@
       app
     >
       <v-list dense>
+<<<<<<< HEAD
         <v-list-tile>
           <v-list-tile-action>
             <v-icon>icon</v-icon>
           </v-list-tile-action>
         </v-list-tile>
+=======
+>>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
@@ -35,25 +38,26 @@
       app
     >
       <v-list dense>
+<<<<<<< HEAD
         <v-list-tile>
           <v-list-tile-action>
             <v-icon>icon</v-icon>
           </v-list-tile-action>
         </v-list-tile>
+=======
+>>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
       </v-list>
     </v-navigation-drawer>
-    <v-navigation-drawer
-      temporary
-      v-model="left"
-      fixed
-    ></v-navigation-drawer>
     <v-content>
+<<<<<<< HEAD
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-tooltip right>
           </v-tooltip>
         </v-layout>
       </v-container>
+=======
+>>>>>>> 41ca216ca2a9852e9a16a2d467cba1afdee8e1a4
     </v-content>
     <v-navigation-drawer
       right
