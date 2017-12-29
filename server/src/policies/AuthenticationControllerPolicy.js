@@ -4,7 +4,6 @@ module.exports = {
   register (req, res, next) {
     const schema = {
       username: Joi.string().required(),
-      coins: Joi.number().min(0).required(),
       email: Joi.string().email(),
       password: Joi.string().regex(
         new RegExp('^[a-zA-Z0-9]{8,32}$')
