@@ -49,6 +49,7 @@ export default {
       password: "",
       username: "",
       coins: 0,
+      profileimage: "https://www.nautiljon.com/images/recettes/00/29/takoyaki_192.jpg?1284548632",
       error: null
     };
   },
@@ -59,6 +60,7 @@ export default {
           email: this.email,
           password: this.password,
           username: this.username,
+          profileimage: this.profileimage,
           coins: this.coins
         })
         this.$store.dispatch('setToken', response.data.token)

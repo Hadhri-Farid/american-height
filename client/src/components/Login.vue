@@ -24,7 +24,9 @@
             <br>
             <div class="error" v-html="error"></div>
             <br>
+<router-link to="/lobby" tag="button">
             <v-btn class="blue lighten-1" dark @click="login">Connexion</v-btn>
+</router-link>
             <v-spacer></v-spacer>
            <span>Pas de compte ?</span>
             <router-link to="/register" tag="button"><span class="zoeischeat">S'inscrire</span></router-link>

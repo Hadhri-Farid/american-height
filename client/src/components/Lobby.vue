@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire" dark>
+  <v-app v-if="$store.state.isUserLoggedIn" id="inspire" light>
     <v-navigation-drawer
     class="hidden-sm-and-down"
       fixed
@@ -33,12 +33,15 @@
     >
       <v-list dense>
         <v-container fluid>
-          <v-btn flat light @click="navigateTo({name:''})"> <!-- TODO  deconnexion-->
+          <router-link to="/" tag="button"><v-btn @click="logout"> <!-- TODO  deconnexion-->
           <v-icon large color="red darken-3">power_settings_new</v-icon>Deconnexion
           </v-btn>
+          </router-link>
           <hr class="hroi">
           <div class="pushDown">
-            <div class="profilName"></div>
+            <div class="profilName">
+
+            </div>
           <v-btn flat light @click="navigateTo({name:'login'})">
           <v-icon large color="blue darken-3">power_settings_new</v-icon>Profil
           </v-btn>
@@ -76,6 +79,12 @@
       right: null,
       left: null
     }),
+    methods: {
+      logout() {
+        this.$store.dispatch('setToken', null)
+        this.$store.dispatch('setUser', null)
+      }
+    },
     props: {
       source: String
     }
