@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <v-app>
+    <v-app dark>
       <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons' rel="stylesheet">
        <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
       <page-header></page-header>
         <main>
-          <v-container fluid>
+          <v-container>
             <router-view/>
           </v-container>
        </main>
@@ -27,6 +27,13 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-@import '.stylus/main';
+<style>
+#app {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>

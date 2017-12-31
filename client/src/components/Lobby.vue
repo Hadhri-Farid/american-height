@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" dark>
     <v-navigation-drawer
     class="hidden-sm-and-down"
       fixed
@@ -38,6 +38,7 @@
           </v-btn>
           <hr class="hroi">
           <div class="pushDown">
+            <div class="profilName"></div>
           <v-btn flat light @click="navigateTo({name:'login'})">
           <v-icon large color="blue darken-3">power_settings_new</v-icon>Profil
           </v-btn>
@@ -49,7 +50,6 @@
                color="#82C7EB"
                :sync="true"
                :labels="true"/>
-
           <v-btn flat light @click="navigateTo({name:'login'})">
           <v-icon large left color="blue darken-3">power_settings_new</v-icon>nb pieces
           </v-btn>

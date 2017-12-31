@@ -2,6 +2,7 @@
 <transition name="fade">
   <v-layout column>
     <v-flex xs6 offset-xs3>
+    <img class="mericorn" src="../assets/img/logo8.png" alt="">
       <div class="white elevation-2">
         <v-toolbar flat dense class="blue lighten-1" dark>
           <v-toolbar-title>Se Connecter</v-toolbar-title>
@@ -10,6 +11,10 @@
                      <v-text-field
               label="Email"
               v-model="email"
+            ></v-text-field>
+              <v-text-field
+              label="Pseudo"
+              v-model="username"
             ></v-text-field>
               <v-text-field
               label="Mot de passe"
@@ -37,6 +42,7 @@ export default {
     return {
       email: "",
       password: "",
+      username: "",
       error: null
     }
   },
@@ -46,6 +52,7 @@ export default {
         const response = await AuthentificationService.login({
           email: this.email,
           password: this.password,
+          username: this.username,
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
@@ -76,5 +83,9 @@ export default {
 
     .fade-enter, .fade-leave-active {
         opacity: 0
+    }
+    .mericorn {
+      height: 300px;
+      width: 300px;
     }
 </style>
