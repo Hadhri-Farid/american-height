@@ -1,5 +1,6 @@
 <template>
-  <v-app v-if="$store.state.isUserLoggedIn" id="inspire" light>
+  <v-app id="inspire"  light>
+    <div class="loginOk" v-if="$store.state.isUserLoggedIn">
     <v-navigation-drawer
     class="hidden-sm-and-down"
       fixed
@@ -68,10 +69,15 @@
       v-model="right"
       fixed
     ></v-navigation-drawer>
+    </div>
+    <alertPage v-else></alertPage>
   </v-app>
 </template>
 
 <script>
+
+import AlertPage from "@/components/Alert";
+
   export default {
     data: () => ({
       drawer: null,
@@ -87,6 +93,9 @@
     },
     props: {
       source: String
+    },
+    components: {
+      AlertPage
     }
   }
 </script>

@@ -17,12 +17,14 @@
 <script>
 import PageHeader from '@/components/Header.vue'
 import PageFooter from '@/components/Footer.vue'
+import AlertPage from '@/components/Alert.vue'
 
 export default {
     name: 'app',
     components: {
         PageHeader,
         PageFooter,
+        AlertPage,
     }
 }
 </script>

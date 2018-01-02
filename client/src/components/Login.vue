@@ -24,9 +24,7 @@
             <br>
             <div class="error" v-html="error"></div>
             <br>
-<router-link to="/lobby" tag="button">
             <v-btn class="blue lighten-1" dark @click="login">Connexion</v-btn>
-</router-link>
             <v-spacer></v-spacer>
            <span>Pas de compte ?</span>
             <router-link to="/register" tag="button"><span class="zoeischeat">S'inscrire</span></router-link>
@@ -58,6 +56,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name:'lobby'
+        })
       } catch (error) {
         this.error = error.response.data.error;
       }
