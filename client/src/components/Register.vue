@@ -1,12 +1,12 @@
 <template>
 <transition name="fade">
   <v-layout column>
-    <v-flex>
+    <v-flex class="mb-4">
        <img class="mericorn" src="../assets/img/logo8A.png" alt="">
     </v-flex>
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
-        <v-toolbar flat dense class="green lighten-2" dark>
+        <v-toolbar flat dense class="deep-purple lighten-2" dark>
           <v-toolbar-title>Inscription</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
@@ -31,8 +31,7 @@
             <div class="error" v-html="error"></div>
             <br>
             <v-spacer></v-spacer>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam praesentium minima libero animi sed. Architecto, commodi! Eius dolorem ut blanditiis veritatis, nobis quisquam aliquid tenetur aperiam deserunt eum suscipit obcaecati.</p>
-            <v-btn class="green darken-2" dark @click="register">S'inscrire</v-btn>
+            <v-btn class="deep-purple darken-3" dark @click="register">S'inscrire</v-btn>
           </div>
       </div>
     </v-flex>
@@ -79,7 +78,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .error {
-  color: red;
+  color: white;
 }
 .fade-enter-active,
 .fade-leave-active {

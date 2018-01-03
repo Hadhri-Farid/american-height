@@ -1,12 +1,12 @@
 <template>
-    <v-toolbar fixed dark class="teal darken-1">
-        <v-toolbar-title clas="mr-4">
+    <v-toolbar fixed dark class="deep-purple darken-4">
+        <v-toolbar-title class="mr-4">
             <span class="home" @click="navigateTo({name:'root'})">American Height</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
             <v-btn flat dark @click="navigateTo({name:'login'})">
-                <v-icon large color="blue darken-3">account_circle</v-icon>Connexion
+                <v-icon large color="cyan lighten-4">account_circle</v-icon>Connexion
                 </v-btn>
         </v-toolbar-items>
     </v-toolbar>

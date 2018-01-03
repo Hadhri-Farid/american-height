@@ -5,6 +5,7 @@ import Register from '@/components/Register'
 import LoginPage from '@/components/Login'
 import ToggleButton from 'vue-js-toggle-button'
 import AlertPage from '@/components/Alert'
+import RoomCreate from '@/components/RoomCreate'
 
 Vue.use(ToggleButton)
 Vue.use(Router)
@@ -31,6 +32,11 @@ export default new Router({
       path: '/alert',
       name: 'alert',
       component: AlertPage
+    },
+    {
+      path: '/room/create',
+      name: 'room-create',
+      component: RoomCreate
     },
     {
       path: '*',

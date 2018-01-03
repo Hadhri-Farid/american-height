@@ -1,6 +1,6 @@
 <template>
 <v-alert outline color="error" icon="warning" :value="true">
-      This is a error alert.
+      Vous devez être connecté pour voir les rooms.
     </v-alert>
 </template>
 
