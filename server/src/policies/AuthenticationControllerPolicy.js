@@ -3,34 +3,37 @@ const Joi = require('joi')
 module.exports = {
   register (req, res, next) {
     const schema = {
-      username: Joi.string().required(),
       email: Joi.string().email(),
+      profileimage: Joi.string(),
+      coins: Joi.number().integer().min(0),
+      username: Joi.string().alphanum().min(3).max(15).required(),
       password: Joi.string().regex(
         new RegExp('^[a-zA-Z0-9]{8,32}$')
       )
     }
 
-    const {error, value} = Joi.validate(req.body, schema)
+    const {error} = Joi.validate(req.body, schema)
 
     if (error) {
       switch (error.details[0].context.key) {
         case 'email':
           res.status(400).send({
-            error: 'Veuillez renseigner un email valide.'
+            error: 'Adresse mail non-valide'
           })
           break
         case 'password':
           res.status(400).send({
-            error: `Votre mot de passe doit remplir les conditions suivantes:
-            <br>
-            1. Contenir uniquement des caractères alphanumériques.
-            <br>
-            2. Faire entre 8 et 32 caractères.`
+            error: `Le mot de passe doit etre défini comme suit:
+              <br>
+              1. Contenir des caractères alphanumériques uniquement.
+              <br>
+              2. Faire entre 8 et 32 caractères.
+            `
           })
           break
         default:
           res.status(400).send({
-            error: 'Il y a eu une erreur, veuillez réessayer.'
+            error: 'Identifiants non valides'
           })
       }
     } else {

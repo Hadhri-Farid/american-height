@@ -5,7 +5,7 @@
        <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
       <page-header></page-header>
         <main>
-          <v-container fluid>
+          <v-container>
             <router-view/>
           </v-container>
        </main>
@@ -17,12 +17,14 @@
 <script>
 import PageHeader from '@/components/Header.vue'
 import PageFooter from '@/components/Footer.vue'
+import AlertPage from '@/components/Alert.vue'
 
 export default {
     name: 'app',
     components: {
         PageHeader,
         PageFooter,
+        AlertPage,
     }
 }
 </script>
