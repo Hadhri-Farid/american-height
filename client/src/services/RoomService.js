@@ -1,7 +1,7 @@
 import Api from '@/services/Api'
 
 export default {
-  index (){
+  index () {
     return Api().get('rooms')
   }
 }
