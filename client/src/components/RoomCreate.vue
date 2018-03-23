@@ -1,37 +1,32 @@
 <template>
-   <v-layout row justify-center>
+  <v-layout>
     <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay=true>
-      <v-btn color="primary" dark slot="activator">Open Dialog</v-btn>
       <v-card>
         <v-toolbar dark color="blue-grey darken-1">
-          <v-btn icon @click.native=" dialog = false" dark>
+          <v-btn icon @click.native=" dialog = false" dark  @click="navigateTo({name:'lobby'})">
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>Nouvelle Room</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat @click.native="dialog = false"> <v-icon left>add_circle</v-icon>Créer</v-btn>
+            <v-btn dark flat @click.native="dialog = false" @click='createRoom' ><v-icon left>add_circle</v-icon>Créer</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <v-list three-line subheader>
           <v-subheader>Paramètres de la room</v-subheader>
-          <v-list-tile avatar>
            <v-text-field
               label="Nom de la room"
-              v-model="title"
+              v-model="room.title"
               required
             ></v-text-field>
-          </v-list-tile>
             <v-list-tile>
                <v-select
             autocomplete
             label="Nombre de Joueurs"
             placeholder="Selectioner"
-            v-bind:items="items"
-            v-model="joueur"
+            v-model="room.players"
             required
           >
-          
           </v-select>
             </v-list-tile>
         </v-list>
@@ -46,30 +41,49 @@
               <v-list-tile-title>Mot de passe</v-list-tile-title>
               <v-list-tile-sub-title>Définir un mot de passe pour créer une partie privée</v-list-tile-sub-title>
             </v-list-tile-content>
+              <v-text-field
+              right
+              v-if="mdp"
+              label="Mot de passe de la room"
+              v-model="room.password"
+              required
+            ></v-text-field>
           </v-list-tile>
         </v-list>
       </v-card>
     </v-dialog>
   </v-layout>
 </template>
-
-
 <script>
 import Lobby from '@/components/Lobby'
+import RoomService from '@/services/RoomService'
 export default {
   data () {
     return {
-      title: '',
-      players: '',
+      dialog: true,
+      notifications: false,
+      mdp: false,
+      widgets: false,
+     room :{
+      title: null,
+      players: null,
       password: null,
-      items: [
-        {text: '2'},
-        {text: '3'},
-        {text: '4'}
-      ]
-  }
+     }
+   }
+ },
+ methods: {
+   navigateTo (route) {
+     this.$router.push(route)
+   },
+  async createRoom () {
+    try {
+     await RoomService.post(this.room)
+     } catch (err) {
+       console.log(err)
+     }
+   }
  }
-} 
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

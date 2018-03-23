@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire"  light>
-    <div  v-if="$store.state.isUserLoggedIn" class="loginOk" > <!--      a ajouter a la fin des tests -->
+     <!--  <div  v-if="$store.state.isUserLoggedIn" class="loginOk" >    a ajouter a la fin des tests -->
     <v-navigation-drawer
     class="hidden-sm-and-down"
       fixed
@@ -47,7 +47,6 @@
                   </v-btn>
                    </v-avatar>
             </div>
-         
                     <v-btn flat light >
           <v-icon large left color="blue darken-3">brightness_4</v-icon> Mode Nuit
           </v-btn>
@@ -57,7 +56,7 @@
                :sync="true"
                :labels="true"/>
           <v-btn flat light>
-          <v-icon large left color="blue darken-3">power_settings_new</v-icon>nb pieces
+          nb pieces {{coins}}
           </v-btn>
           </div>
           </v-container>
@@ -73,10 +72,8 @@
           </v-layout>
       </v-layout>
       <div class="mt-5" v-for="room in rooms" :key="room.id">
-        {{room.title}} - 
-        {{room.players}}/4
-        
-
+        {{room.title}} -
+        {{room.players}}/{{room.players}}
       </div>
     </v-content>
     <v-navigation-drawer
@@ -85,15 +82,14 @@
       v-model="right"
       fixed
     ></v-navigation-drawer>
-    </div>
-    <alertPage v-else></alertPage> <!--     a ajouter a la fin des tests-->
+     <!--  <alertPage v-else></alertPage>   a ajouter a la fin des tests-->
   </v-app>
 </template>
 
 <script>
 import AlertPage from "@/components/Alert";
 import RoomService from "@/services/RoomService";
-
+import RoomCreate from '@/components/RoomCreate';
 export default {
   data() {
     return {
@@ -101,7 +97,8 @@ export default {
       drawerRight: null,
       right: null,
       left: null,
-      rooms: null
+      rooms: null,
+      coins: null,
     };
   },
   methods: {
@@ -120,7 +117,7 @@ export default {
   components: {
     AlertPage
   }
-};
+}
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
