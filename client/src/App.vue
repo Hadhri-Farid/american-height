@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <v-app>
+  <div id="app" >
+    <v-app ref="inspire" :dark="isDark">
       <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
        <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
       <page-header></page-header>
@@ -20,12 +20,24 @@ import PageFooter from '@/components/Footer.vue'
 import AlertPage from '@/components/Alert.vue'
 
 export default {
-    name: 'app',
-    components: {
-        PageHeader,
-        PageFooter,
-        AlertPage,
+  name: 'app',
+  data () {
+    return {
+      value: true
     }
+  },
+  components: {
+    PageHeader,
+    PageFooter,
+    AlertPage
+  },
+
+  computed: {
+    isDark () {
+      console.log(this.$store.getters.isDark)
+      return this.$store.getters.isDark
+    }
+  }
 }
 </script>
 
@@ -35,7 +47,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>

@@ -4,10 +4,10 @@ const {Room} = require('../models')
 module.exports = {
   async index (req, res) {
     try {
-      const rooms = await Room.findAll({
+      const room = await Room.findAll({
         limit: 10
       })
-      res.send(rooms)
+      res.send(room)
     } catch (err) {
       res.status(500).send({
         error: 'Une erreur est survenue en récupérant les Rooms'

@@ -1,22 +1,19 @@
 <template>
 <transition name="fade">
-  <v-layout column>
-  <v-flex class="mb-4">
-    <img class="mericorn" src="../assets/img/logo8A.png" alt="">
-    </v-flex>
-    <v-flex xs6 offset-xs3>
+  <v-layout fluid fill-height>
+     <v-flex xs12 sm8 md6>
       <div class="white elevation-2">
         <v-toolbar flat dense class="indigo darken-4" dark>
           <v-toolbar-title>Se Connecter</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
-                     <v-text-field
-              label="Email"
-              v-model="email"
-            ></v-text-field>
-              <v-text-field
+             <v-text-field
               label="Pseudo"
               v-model="username"
+            ></v-text-field>
+              <v-text-field
+              label="Email"
+              v-model="email"
             ></v-text-field>
               <v-text-field
               label="Mot de passe"
@@ -33,36 +30,40 @@
           </div>
       </div>
     </v-flex>
+  <v-flex class="mb-4">
+    <img class="mericorn" src="../assets/img/logo8A.png" alt="">
+    <h1>Don’t get lost in the shuffle!</h1>
+    </v-flex> 
   </v-layout>
   </transition>
 </template>
 
 <script>
-import AuthentificationService from "@/services/AuthentificationService";
+import AuthentificationService from '@/services/AuthentificationService'
 export default {
-  data() {
+  data () {
     return {
-      email: "",
-      password: "",
-      username: "",
+      email: '',
+      password: '',
+      username: '',
       error: null
     }
   },
   methods: {
-    async login() {
+    async login () {
       try {
         const response = await AuthentificationService.login({
           email: this.email,
           password: this.password,
-          username: this.username,
+          username: this.username
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
         this.$router.push({
-          name:'lobby'
+          name: 'lobby'
         })
       } catch (error) {
-        this.error = error.response.data.error;
+        this.error = error.response.data.error
       }
     }
   }

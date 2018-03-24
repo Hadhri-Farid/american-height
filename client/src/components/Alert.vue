@@ -1,7 +1,11 @@
 <template>
+<v-layout  column fluid justify-center>
+  <v-flex xs3>
 <v-alert outline color="error" icon="warning" :value="true">
       Vous devez être connecté pour voir les rooms.
     </v-alert>
+    </v-flex>
+    </v-layout>
 </template>
 
 <script>

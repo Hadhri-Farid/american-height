@@ -14,11 +14,11 @@
 
 <script>
 export default {
-    methods: {
-        navigateTo (route){
-            this.$router.push(route)
-        }
+  methods: {
+    navigateTo (route) {
+      this.$router.push(route)
     }
+  }
 }
 </script>
 

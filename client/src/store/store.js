@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
-    isUserLoggedIn: false
+    isUserLoggedIn: false,
+    isDarkMode: false
   },
   mutations: {
     setToken (state, token) {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    setDark (state, isDarkMode) {
+      state.isDarkMode = isDarkMode
     }
   },
   actions: {
@@ -29,6 +33,14 @@ export default new Vuex.Store({
     },
     setUser ({commit}, user) {
       commit('setUser', user)
+    },
+    setDark ({commit}, isDarkMode) {
+      commit('setDark', isDarkMode)
+    }
+  },
+  getters: {
+    isDark: (state) => {
+      return state.isDarkMode
     }
   }
 })

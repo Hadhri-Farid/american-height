@@ -1,10 +1,7 @@
 <template>
 <transition name="fade">
-  <v-layout column>
-    <v-flex class="mb-4">
-       <img class="mericorn" src="../assets/img/logo8A.png" alt="">
-    </v-flex>
-    <v-flex xs6 offset-xs3>
+  <v-layout fluid justify-center>
+    <v-flex xs3 >
       <div class="white elevation-2">
         <v-toolbar flat dense class="deep-purple lighten-2" dark>
           <v-toolbar-title>Inscription</v-toolbar-title>
@@ -13,6 +10,11 @@
             <form name="american-height-form"
               autocomplete="off">
               <v-text-field
+              label="Votre pseudo"
+              type="username"
+              v-model="username"
+            ></v-text-field>
+              <v-text-field
               label="Email"
               v-model="email"
             ></v-text-field>
@@ -20,12 +22,7 @@
               label="Mot de passe"
               type="password"
               v-model="password"
-            ></v-text-field>
-              <v-text-field
-              label="votre pseudo"
-              type="username"
-              v-model="username"
-            ></v-text-field>
+            ></v-text-field>     
             </form>
             <br>
             <div class="error" v-html="error"></div>
@@ -40,20 +37,20 @@
 </template>
 
 <script>
-import AuthentificationService from "@/services/AuthentificationService";
+import AuthentificationService from '@/services/AuthentificationService'
 export default {
-  data() {
+  data () {
     return {
-      email: "",
-      password: "",
-      username: "",
+      email: '',
+      password: '',
+      username: '',
       coins: 0,
-      profileimage: "https://www.nautiljon.com/images/recettes/00/29/takoyaki_192.jpg?1284548632",
+      profileimage: 'https://www.nautiljon.com/images/recettes/00/29/takoyaki_192.jpg?1284548632',
       error: null
-    };
+    }
   },
   methods: {
-    async register() {
+    async register () {
       try {
         const response = await AuthentificationService.register({
           email: this.email,
@@ -65,14 +62,14 @@ export default {
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
         this.$router.push({
-          name:'login'
+          name: 'login'
         })
       } catch (error) {
-        this.error = error.response.data.error;
+        this.error = error.response.data.error
       }
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

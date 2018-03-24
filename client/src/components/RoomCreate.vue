@@ -9,7 +9,7 @@
           <v-toolbar-title>Nouvelle Room</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat @click.native="dialog = false" @click='createRoom' ><v-icon left>add_circle</v-icon>Créer</v-btn>
+            <v-btn dark flat @click.native="dialog = false" @click="createRoom, navigateTo({name:'lobby'})"  ><v-icon left>add_circle</v-icon>Créer</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <v-list three-line subheader>
@@ -55,7 +55,7 @@
   </v-layout>
 </template>
 <script>
-import Lobby from '@/components/Lobby'
+
 import RoomService from '@/services/RoomService'
 export default {
   data () {
@@ -64,29 +64,28 @@ export default {
       notifications: false,
       mdp: false,
       widgets: false,
-     room :{
-      title: null,
-      players: null,
-      password: null,
-     }
-   }
- },
- methods: {
-   navigateTo (route) {
-     this.$router.push(route)
-   },
-  async createRoom () {
-    try {
-     await RoomService.post(this.room)
-     } catch (err) {
-       console.log(err)
-     }
-   }
- }
+      room: {
+        title: null,
+        players: null,
+        password: null
+      }
+    }
+  },
+  methods: {
+    navigateTo (route) {
+      this.$router.push(route)
+    },
+    async createRoom () {
+      try {
+        await RoomService.post(this.room)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>

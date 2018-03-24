@@ -1,10 +1,10 @@
 import Api from '@/services/Api'
 
 export default {
-  index (){
+  index () {
     return Api().get('rooms')
   },
-  post (room){
+  post (room) {
     return Api().post('rooms', room)
   }
 }

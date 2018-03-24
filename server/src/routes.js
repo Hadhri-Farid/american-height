@@ -15,6 +15,4 @@ module.exports = (app) => {
     RoomController.index)
   app.post('/rooms',
     RoomController.post)
-
-    
 }
