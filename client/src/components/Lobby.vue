@@ -1,6 +1,6 @@
 <template>
-  <v-layout id="inspire" >
     <div  v-if="$store.state.isUserLoggedIn" class="loginOk" >   <!-- a ajouter a la fin des tests -->
+    <!-- NAVIGATION DE GAUCHE -->
     <v-navigation-drawer
     class="hidden-sm-and-down"
       fixed
@@ -14,7 +14,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
-      color="blue-grey"
+      color="amber darken-4"
       dark
       fixed
       app
@@ -35,47 +35,88 @@
       <v-list dense>
         <v-container fluid>
           <v-btn flat @click="logout"> <!-- TODO  deconnexion-->
-          <v-icon large color="red darken-3">power_settings_new</v-icon>Deconnexion
+          <v-icon large color="red accent-2">power_settings_new</v-icon>Deconnexion
           </v-btn>
-       
           <hr class="hroi">
           <div class="pushDown">
             <div class="profilName">
-              <v-avatar size="100px" class="indigo">
-                 <v-btn flat dark >
-                  <v-icon  class="indigo" x-large dark>account_circle</v-icon>
+              <v-avatar size="100px" class="amber darken-4">
+                  <v-btn flat dark >
+                    <v-icon  class="amber darken-4" x-large dark>account_circle</v-icon>
                   </v-btn>
-                   </v-avatar>
-                  <p class="sep1">{{currentUsername}}</p>
-                   <div class="sep">
-                  <p><v-icon color="amber darken-1">fiber_smart_record</v-icon> My Crescents : {{currentCoins}} </p>
-                    </div>
+              </v-avatar>
+              <p class="sep1">{{currentUsername}}</p>
+                <div class="sep">
+              <p><v-icon color="amber darken-1">fiber_smart_record</v-icon> My Crescents : {{currentCoins}} </p>
+                </div>
             </div>
-            <!-- Turn ON/OFF BUTTON -->
-               <div class="pushDown2">          
-         <p> <v-icon large left color="blue darken-3">brightness_4</v-icon> Mode Nuit </p>
-          </div> 
-          <v-switch
-        v-model="isDarkTheme"
-        ></v-switch>
           </div>
-          </v-container>
+          <div class="pushDown2">
+            <p class="pr-3"><v-icon large left color="amber darken-4">brightness_4</v-icon> Mode Nuit</p>
+              <v-switch
+              color="amber darken-3"
+              v-model="isDarkTheme"
+              >
+              </v-switch>
+          </div>
+        </v-container>
       </v-list>
     </v-navigation-drawer>
-    <v-content>
-      <v-layout>
-        <v-spacer></v-spacer>
-        <v-layout>
-          <router-link to="/room/create" tag="button">
-          <v-btn flat class="mt-5"> <v-icon left large color="blue"> add_circle</v-icon> Créer une Room</v-btn>
-          </router-link >
-          </v-layout>
-      </v-layout>
-    </v-content>
+    <!-- A PARTIR D'ICI CENTRE DE LA PAGE -->
+<h1>Bienvenue dans le lobby !</h1>
+  <v-layout row justify-center>
+    <v-dialog v-model="dialog" persistent max-width="500px">
+      <v-btn flat class="mt-5" slot="activator"> <v-icon left large color="amber darken-4" > add_circle</v-icon> Créer une Room</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Paramètres de la room</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field label="Nom de la room" required color="amber darken-4"></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+              <v-select
+                  label="Nombre de joueurs"
+                  required
+                  :items="['2', '3', '4']"
+                  color="amber darken-4"
+                ></v-select>
+                </v-flex>
+              <v-flex xs1>
+                 <v-checkbox
+                  v-model="mdp"
+                  color="amber darken-4"
+                ></v-checkbox>
+                </v-flex>
+                <v-flex xs4>
+                <v-list-tile-title>Mot de passe</v-list-tile-title>
+                <v-list-tile-sub-title>Créer une partie privée</v-list-tile-sub-title>
+               </v-flex>
+                <v-flex xs12>
+                <v-text-field v-if="mdp" label="Password" type="password" color="amber darken-4"></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          <small class="rouge">*Champ obligatoire</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false">Annuler</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false, createRoom">Creer</v-btn>
+          <v-btn>test</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+    <!-- Room Dans le lobby (Affichage) -->
     <div class="mt-5" v-for="room in rooms" :key="room.id">
         {{room.title}} -
         {{room.players}}/{{room.players}}
       </div>
+      <!-- NAVIGATION DE DROITE -->
     <v-navigation-drawer
       right
       temporary
@@ -84,7 +125,6 @@
     ></v-navigation-drawer>
      </div>
       <alertPage v-else></alertPage>  <!--  a ajouter a la fin des tests-->
-  </v-layout >
 </template>
 
 <script>
@@ -94,6 +134,13 @@ import RoomService from '@/services/RoomService'
 export default {
   data () {
     return {
+      room: {
+        title: null,
+        players: null,
+        password: null
+      },
+      dialog: false,
+      mdp: true,
       drawer: null,
       drawerRight: null,
       right: null,
@@ -101,7 +148,6 @@ export default {
       rooms: null,
       currentUsername: this.$store.state.user.username,
       currentCoins: this.$store.state.user.coins
-
     }
   },
   methods: {
@@ -111,6 +157,14 @@ export default {
       this.$router.push({
         name: 'login'
       })
+      this.$store.commit('setDark', false)
+    },
+    async createRoom () {
+      try {
+        await RoomService.post(this.room)
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   computed: {
@@ -120,6 +174,14 @@ export default {
       },
       set (newValue) {
         this.$store.commit('setDark', newValue)
+      }
+    },
+    isRoomSet: {
+      get () {
+        return this.$store.getter.roomsCount
+      },
+      set (newRoom) {
+        this.$store.commit('setRoom', newRoom)
       }
     }
   },
@@ -138,25 +200,29 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .pushDown {
-  margin-top: 250px; 
+  margin-top: 200px;
 }
 .pushDown2 {
-  margin-top: 350px; 
-  display: inline-block;
+  margin-top: 250px;
+  padding-left: 50px;
+  display: flex;
 }
 
 .hroi {
   margin-top: 20px;
 }
 
-.sep{
+.sep {
   margin-top: 20px;
   font-size: 1.5em;
 }
-.sep1{
+.sep1 {
   margin-top: 5px;
   font-size: 1.5em;
 }
-
+.rouge {
+  color: red;
+}
 </style>

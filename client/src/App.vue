@@ -34,7 +34,6 @@ export default {
 
   computed: {
     isDark () {
-      console.log(this.$store.getters.isDark)
       return this.$store.getters.isDark
     }
   }
@@ -47,6 +46,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
 }
 </style>

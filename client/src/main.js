@@ -11,10 +11,10 @@ import store from '../src/store/store'
 Vue.config.productionTip = false
 Vue.use(Vuetify, {
   theme: {
-    primary: '#ff0019',
-    secondary: '#ff0019',
-    accent: '#ff0019',
-    error: '#ff0019'
+    primary: '#3f51b5',
+    secondary: '#b0bec5',
+    accent: '#8c9eff',
+    error: '#b71c1c'
   }
 })
 

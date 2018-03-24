@@ -3,7 +3,7 @@
   <v-layout fluid fill-height>
      <v-flex xs12 sm8 md6>
       <div class="white elevation-2">
-        <v-toolbar flat dense class="indigo darken-4" dark>
+        <v-toolbar flat dense class="amber darken-1" dark>
           <v-toolbar-title>Se Connecter</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
@@ -23,7 +23,7 @@
             <br>
             <div class="error" v-html="error"></div>
             <br>
-            <v-btn class="indigo darken-4 mb-5" dark @click="login">Connexion</v-btn>
+            <v-btn class="amber darken-1 mb-5" dark @click="login">Connexion</v-btn>
             <v-spacer></v-spacer>
            <span> Pas de compte ?</span>
             <router-link to="/register" tag="button"><span class="zoeischeat">S'inscrire</span></router-link>
@@ -33,7 +33,7 @@
   <v-flex class="mb-4">
     <img class="mericorn" src="../assets/img/logo8A.png" alt="">
     <h1>Don’t get lost in the shuffle!</h1>
-    </v-flex> 
+    </v-flex>
   </v-layout>
   </transition>
 </template>

@@ -3,7 +3,7 @@
   <v-layout fluid justify-center>
     <v-flex xs3 >
       <div class="white elevation-2">
-        <v-toolbar flat dense class="deep-purple lighten-2" dark>
+        <v-toolbar flat dense class="amber darken-1" dark>
           <v-toolbar-title>Inscription</v-toolbar-title>
         </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
@@ -22,13 +22,13 @@
               label="Mot de passe"
               type="password"
               v-model="password"
-            ></v-text-field>     
+            ></v-text-field>
             </form>
             <br>
             <div class="error" v-html="error"></div>
             <br>
             <v-spacer></v-spacer>
-            <v-btn class="deep-purple darken-3" dark @click="register">S'inscrire</v-btn>
+            <v-btn class="amber darken-2" dark @click="register">S'inscrire</v-btn>
           </div>
       </div>
     </v-flex>

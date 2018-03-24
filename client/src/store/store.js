@@ -9,7 +9,8 @@ export default new Vuex.Store({
     token: null,
     user: null,
     isUserLoggedIn: false,
-    isDarkMode: false
+    isDarkMode: false,
+    rooms: null
   },
   mutations: {
     setToken (state, token) {
@@ -25,22 +26,34 @@ export default new Vuex.Store({
     },
     setDark (state, isDarkMode) {
       state.isDarkMode = isDarkMode
+    },
+    setRoom (state, rooms) {
+      state.rooms = rooms
+      if (rooms) {
+        state.rooms++
+      }
     }
   },
   actions: {
-    setToken ({commit}, token) {
+    setToken ({ commit }, token) {
       commit('setToken', token)
     },
-    setUser ({commit}, user) {
+    setUser ({ commit }, user) {
       commit('setUser', user)
     },
-    setDark ({commit}, isDarkMode) {
+    setDark ({ commit }, isDarkMode) {
       commit('setDark', isDarkMode)
+    },
+    setRoom ({ commit }, rooms) {
+      commit('setRoom', rooms)
     }
   },
   getters: {
-    isDark: (state) => {
+    isDark: state => {
       return state.isDarkMode
+    },
+    roomsCount: state => {
+      return state.rooms
     }
   }
 })
