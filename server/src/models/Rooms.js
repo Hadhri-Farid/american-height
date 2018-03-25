@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       unique: true
     },
     players: DataTypes.INTEGER,
-    password: {
-      allowNull: true,
-      type: DataTypes.STRING
-    }
+    roomPassword: DataTypes.STRING
   })
+  Room.associate = function (models) {
+  }
+
   return Room
 }

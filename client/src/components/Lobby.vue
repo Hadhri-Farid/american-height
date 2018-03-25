@@ -1,5 +1,5 @@
 <template>
-    <div  v-if="$store.state.isUserLoggedIn" class="loginOk" >   <!-- a ajouter a la fin des tests -->
+     <div>  <!-- v-if="$store.state.isUserLoggedIn" class="loginOk" > -->   <!-- a ajouter a la fin des tests -->
     <!-- NAVIGATION DE GAUCHE -->
     <v-navigation-drawer
     class="hidden-sm-and-down"
@@ -63,6 +63,7 @@
       </v-list>
     </v-navigation-drawer>
     <!-- A PARTIR D'ICI CENTRE DE LA PAGE -->
+    <div class="error" v-html="error"></div>
 <h1>Bienvenue dans le lobby !</h1>
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="500px">
@@ -75,12 +76,13 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12>
-                <v-text-field label="Nom de la room" required color="amber darken-4"></v-text-field>
+                <v-text-field v-model="room.title" label="Nom de la room" required color="amber darken-4"></v-text-field>
               </v-flex>
               <v-flex xs12>
               <v-select
                   label="Nombre de joueurs"
                   required
+                  v-model="room.players"
                   :items="['2', '3', '4']"
                   color="amber darken-4"
                 ></v-select>
@@ -96,7 +98,7 @@
                 <v-list-tile-sub-title>Créer une partie privée</v-list-tile-sub-title>
                </v-flex>
                 <v-flex xs12>
-                <v-text-field v-if="mdp" label="Password" type="password" color="amber darken-4"></v-text-field>
+                <v-text-field v-model="room.roomPassword" label="Password" type="password" color="amber darken-4"></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -105,8 +107,8 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog = false">Annuler</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false, createRoom">Creer</v-btn>
-          <v-btn>test</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false" @click="createRoom">Creer</v-btn>
+          <v-btn @click="test">test</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -114,7 +116,7 @@
     <!-- Room Dans le lobby (Affichage) -->
     <div class="mt-5" v-for="room in rooms" :key="room.id">
         {{room.title}} -
-        {{room.players}}/{{room.players}}
+        {{room.players}}/{{room.players}} <v-icon>lock_outline</v-icon>
       </div>
       <!-- NAVIGATION DE DROITE -->
     <v-navigation-drawer
@@ -124,7 +126,7 @@
       fixed
     ></v-navigation-drawer>
      </div>
-      <alertPage v-else></alertPage>  <!--  a ajouter a la fin des tests-->
+     <!-- <alertPage v-else></alertPage> -->  <!--  a ajouter a la fin des tests-->
 </template>
 
 <script>
@@ -135,19 +137,20 @@ export default {
   data () {
     return {
       room: {
-        title: null,
-        players: null,
-        password: null
+        title: '',
+        players: 2,
+        roomPassword: ''
       },
       dialog: false,
-      mdp: true,
+      mdp: false,
       drawer: null,
       drawerRight: null,
       right: null,
       left: null,
       rooms: null,
       currentUsername: this.$store.state.user.username,
-      currentCoins: this.$store.state.user.coins
+      currentCoins: this.$store.state.user.coins,
+      error: null
     }
   },
   methods: {
@@ -161,10 +164,18 @@ export default {
     },
     async createRoom () {
       try {
-        await RoomService.post(this.room)
+        const response = await RoomService.post({
+          title: this.room.title,
+          players: this.room.players,
+          roomPassword: this.room.roomPassword
+        })
+        this.$store.dispatch('setRoom', response.data.room)
       } catch (err) {
         console.log(err)
       }
+    },
+    test () {
+      console.log(this.$store.state.room)
     }
   },
   computed: {
@@ -174,14 +185,6 @@ export default {
       },
       set (newValue) {
         this.$store.commit('setDark', newValue)
-      }
-    },
-    isRoomSet: {
-      get () {
-        return this.$store.getter.roomsCount
-      },
-      set (newRoom) {
-        this.$store.commit('setRoom', newRoom)
       }
     }
   },
